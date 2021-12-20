@@ -1,0 +1,48 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
+/* Write your global styles here, in PostCSS syntax */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--bg: #fff;
+	--orange: #f59e0b;
+	--grey: #ddd;
+	--text: rgba(29, 29, 29, 1);
+	--inverse-bg: #1F1D36;
+
+	font-family: 'Roboto', sans-serif;
+}
+
+[data-theme="dark"] {
+	--bg: #1F1D36;
+	--inverse-bg: #fff;
+	--text: #FFF;
+}
+
+p {
+	color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: var(--orange);
+}
+
+body {
+	color: var(--text);
+	background: var(--bg);
+}
+
+.blog-container {
+	max-width: 42rem;
+	min-height: 100%;
+	grid-template-rows: auto 1fr auto;
+}
+
+@media (max-width: 768px) {
+	.blog-container {
+		max-width: 90%;
+	}
+}
