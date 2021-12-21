@@ -4,42 +4,16 @@
 	import '../app.scss';
 </script>
 
-<Header>
-	<main>
-		<slot />
-	</main>
-	<style>
-		main {
-			flex: 1;
-			display: flex;
-			flex-direction: column;
-			padding: 1rem;
-			width: 100%;
-			max-width: 1024px;
-			margin: 0 auto;
-			box-sizing: border-box;
-		}
+<div id="root" class="lg:w-1/2 md:w-full p-4 mx-auto relative">
+	<Header/>
+	<slot/>
+	<Footer/>
+</div>
 
-		footer {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			padding: 40px;
-		}
-
-		footer a {
-			font-weight: bold;
-		}
-
-		@media (min-width: 480px) {
-			footer {
-				padding: 40px 0;
-			}
-		}
-	</style>
-</Header>
-
-<slot />
-
-<Footer/>
+<style>
+	#root{
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		height: 100vh;
+	}
+</style>
