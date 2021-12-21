@@ -6,7 +6,7 @@
 
 <div class="flex flex-wrap gap-2">
     {#each tags as tag, i}
-        <span class:animate="{animation==true}" class="tag rounded-md px-2 py-1 font-bold text-xs" style="animation-delay: {(i+1) * 200}ms;">
+        <span class:animate="{animation==true}" class="tag rounded-md px-2 py-1 font-bold text-xs" style="animation-delay: {(i) * 200}ms;">
             {tag.name}
         </span>
     {/each}
