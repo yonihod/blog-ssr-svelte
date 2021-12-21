@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Tags from "$lib/components/tags.svelte";
+    import Tags from "../components/tags.svelte";
     import { getPostTag } from "../../services/wordpress";
     import { onMount } from "svelte";
     import * as timeago from "timeago-simple";
@@ -7,7 +7,7 @@
     export let post: Post;
     export let delay: number;
 
-    let tags: Tag[];
+    let tags: any;
     let animation: boolean;
     let displayDate : string;
 
