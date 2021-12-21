@@ -1,10 +1,12 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { page } from '$app/stores';
-    import { getPostById } from "../../services/wordpress";
+    import { getPostById, getPostTag } from "../../services/wordpress";
+import Tags from "$lib/components/tags.svelte";
     
     let postPromise: any;
-
+    let tagsPromise: any;
+    let tags: Tag[];
     const displayDate =  (date) : string => {
         const _date = new Date(date);
         const month = _date.toLocaleString('default', { month: 'long' });
@@ -16,14 +18,17 @@
     onMount( async()=> {
         console.log("Mounting...")
         postPromise = (await getPostById(parseInt(($page.params.id))));
+        tagsPromise = (await getPostTag(parseInt(($page.params.id))));
         console.log(postPromise);
+        console.log('tags',tagsPromise);
     })
 
 </script>
 
-{#if postPromise != null}
+{#if postPromise != null && tagsPromise != null}
     <article>
         <h1>{@html postPromise.title.rendered}</h1>
+        <Tags tags={tagsPromise} animation={false}/>
         <h4>{@html postPromise.excerpt.rendered}</h4>
         <p>{displayDate(postPromise.date)}</p>
         {@html postPromise.content.rendered}

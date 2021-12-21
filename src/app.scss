@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 :root {
-	--bg: #fff;
+	--bg: #f5f5f4;
 	--orange: #f59e0b;
 	--grey: #ddd;
 	--text: #1d1d1d;
@@ -68,3 +68,30 @@ body {
    -webkit-box-orient: vertical;
 }
 
+a {
+	color: var(--orange);
+	text-decoration: underline;
+	&:hover {
+		color: var(--text);
+	}
+}
+
+@keyframes fadeInBump {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -20%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

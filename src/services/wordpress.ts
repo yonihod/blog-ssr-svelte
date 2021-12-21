@@ -7,10 +7,8 @@ export const getPostById = (id: number) : Promise<Post> => {
     return wpAPI.get(`/posts/${id}`)
 }
 
-export const getUserById = (id: string) => wpAPI.get(`/users${id}`)
+export const getUserById = (id: number) => wpAPI.get(`/users${id}`)
 
-export const getComments = (id: string) => wpAPI.get(`/comments/`)
+export const getComments = (id: number) => wpAPI.get(`/comments/`)
 
-export const getPostTag = (id: string) => wpAPI.get(`/tags?post=${id}`)
-
-
+export const getPostTag = (id: number) => wpAPI.get(`/tags?post=${id}`)
