@@ -1,5 +1,5 @@
 <script>
-    import Social from "./social.svelte"
+    import Social from "./Social.svelte"
 </script>
 
 <div class="flex w-full items-center py-2">

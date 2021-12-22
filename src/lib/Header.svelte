@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Switch from './switch.svelte';
-	import Author from './author.svelte';
+	import Switch from './Switch.svelte';
+	import Author from './Author.svelte';
 
 	let darkTheme;
 
