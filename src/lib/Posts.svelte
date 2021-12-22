@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getPosts, getPostTag } from "../../services/wordpress";
+    import { getPosts, getPostTag } from "../services/wordpress";
     import { onMount } from "svelte";
     import PostCard from "./PostCard.svelte";
     let posts: Array<Post>;

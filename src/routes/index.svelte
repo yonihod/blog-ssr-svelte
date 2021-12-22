@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import Posts from '$lib/posts/Posts.svelte';
+	import Posts from '$lib/posts.svelte';
 </script>
 
 <svelte:head>

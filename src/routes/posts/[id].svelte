@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import { page } from '$app/stores';
     import { getPostById, getPostTag } from "../../services/wordpress";
-    import Tags from "$lib/components/tags.svelte";
+    import Tags from "$lib/tags.svelte";
     
     let postPromise: any;
     let tagsPromise: any;
