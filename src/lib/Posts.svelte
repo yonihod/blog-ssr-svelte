@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { getPosts, getPostTag } from "../services/wordpress";
+    import { getPosts } from "../services/wordpress";
     import { onMount } from "svelte";
-    import PostCard from "./PostCard.svelte";
+    import PostCard from "./postCard.svelte";
     let posts: Array<Post>;
     onMount( async ()=> {
         try {
