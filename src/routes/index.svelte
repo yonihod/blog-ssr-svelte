@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	import { ArrowBackUp  } from "tabler-icons-svelte";
+
 	export const prerender = true;
 </script>
 
@@ -12,18 +14,28 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type="text/css">  
   	<link rel="stylesheet" href="https://tutsplus.github.io/syntax-highlighter-demos/highlighters/Prism/prism_okaidia.css">    
 </svelte:head>
-<div class="mt-4">
-	<figure class="flex items-center gap-2">
-		<Author img={"/yoni.png"} alt={"yoni"}/>
-		<figcaption>
-			Personal blog by
-			<br>
-			<a href="https://www.yonihodeffi.dev">
-				Yoni Hodeffi
-			</a>
-		</figcaption>
-	</figure>
-</div>
+
 <section class="my-4">
+	<div>
+		<figure class="flex items-center gap-2">
+			<Author img={"/yoni.png"} alt={"yoni"}/>
+			<figcaption class="intro">
+				Personal blog by
+				<a class="font-bold" href="https://www.yonihodeffi.dev">
+					Yoni Hodefi
+				</a>
+				<br>
+				<div class="flex gap-2 items-center">
+					Eat, Sleep, Dev, Repeat <ArrowBackUp/>
+				</div>
+			</figcaption>
+		</figure>
+	</div>
 	<Posts/>
 </section>
+
+<style>
+	.intro {
+		font-family: monospace;
+	}
+</style>

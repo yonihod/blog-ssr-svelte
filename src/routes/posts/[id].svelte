@@ -11,7 +11,7 @@
     const displayDate =  (date) : string => {
         const _date = new Date(date);
         const month = _date.toLocaleString('default', { month: 'long' });
-        const day = _date.getDay();
+        const day = _date.getUTCDate();
         const year =_date.getFullYear();
         return `${month} ${day}, ${year}`
     }
@@ -29,9 +29,9 @@
 {#if postPromise != null && tagsPromise != null}
     <article>
         <h1>{@html postPromise.title.rendered}</h1>
+        <p>{displayDate(postPromise.date)}</p>
         <Tags tags={tagsPromise} animation={false}/>
         <h4>{@html postPromise.excerpt.rendered}</h4>
-        <p>{displayDate(postPromise.date)}</p>
         <span use:codify>
             {@html postPromise.content.rendered}
         </span>
