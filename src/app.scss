@@ -20,7 +20,7 @@
 }
 
 [data-theme="dark"] {
-	--inverse-text:#1d1d1d;
+	--inverse-text:#fff;
 	--bg: #1F1D36;
 	--inverse-bg: #fff;
 	--text: #FFF;
@@ -93,5 +93,14 @@ a {
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes borderGrow {
+	from {
+		border-color: linear-gradient(to right, #fff 100%, var(--orange) 0%)
+	}
+	to {
+		border-color: linear-gradient(to right, #fff 0%, var(--orange) 100%);
 	}
 }

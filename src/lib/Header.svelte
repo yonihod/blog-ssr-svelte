@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Switch from './Switch.svelte';
-	import Author from './Author.svelte';
 
 	let darkTheme;
 
@@ -34,18 +33,5 @@
 		<div class="ml-auto">
 			<Switch toggleTheme={toggleTheme}></Switch>
 		</div>
-	</div>
-
-	<div class="mt-4">
-		<figure class="flex items-center gap-2">
-			<Author img={"/yoni.png"} alt={"yoni"}/>
-			<figcaption>
-				Personal blog by
-				<br>
-				<a href="https://www.yonihodeffi.dev">
-					Yoni Hodeffi
-				</a>
-			</figcaption>
-		</figure>
 	</div>
 </header>

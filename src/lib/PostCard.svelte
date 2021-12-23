@@ -27,14 +27,14 @@
     on:focus={() => animation = !animation}
     on:blur={() => animation = !animation}
     on:mouseout= {() => animation = !animation}
-    class="card relative shadow-sm bg-white rounded-3xl px-4 py-2 w-full h-72"
+    class="card relative shadow-sm bg-white rounded-3xl w-full h-72"
     style="animation-delay: {delay}ms"
     >
-    <div class="upper">
-        <img src="{post.jetpack_featured_media_url}" alt="Post">
-        <div class="box text">{@html post.title.rendered}</div>
+    <div class="upper pb-1">
+        <img class="post-img" src="{post.jetpack_featured_media_url}" alt="Post">
+        <div class="box px-4 py-2 mt-2 text text-xl font-bold relative">{@html post.title.rendered}</div>
     </div>
-    <div class="meta justify-between">
+    <div class="meta px-4 justify-between">
         <span>{displayDate}</span>
         {#if tags != null }    
             <Tags tags={tags} animation={animation}/>
@@ -48,23 +48,36 @@
         animation: fadeIn 0.5s ease-in;
         animation-fill-mode: forwards;
         display: grid;
-        grid-template-rows: 1fr 20px;
+        grid-template-rows: 1fr;
         overflow: hidden;
-        color: var(--orange);
+        color: #000;
         text-decoration: none;
+
+        .upper {
+            display: grid;
+            grid-template-rows: 75% 1fr;
+        }
         &:hover {
-            grid-template-rows: 80%;
             .meta {
-                position: initial;
                 opacity: 1;
                 transform: translateY(0);
                 visibility: visible;
             }
         }
 
+        .box::before {
+            content: "";
+            width: 45px;
+            border-top: 8px solid var(--orange);
+            position: absolute;
+            top: 0;
+            z-index: 10;
+        }
+
         .meta {
             display: flex;
             background: #fff;
+            z-index: 1;
             -webkit-transition: all 0.3s ease-in-out;
             -o-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
@@ -74,7 +87,7 @@
             width: 100%;
             visibility: hidden;
             opacity: 0;
-            padding: 19px 13px;
+            height: 58px;
             transform: translateY(100%);
         }
     }

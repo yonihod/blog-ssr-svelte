@@ -14,6 +14,7 @@
 
 <style lang="scss">
     .tag {
+        height: fit-content;
         cursor: pointer;
         background: var(--orange);
         color: #fff;

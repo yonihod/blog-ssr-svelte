@@ -25,7 +25,7 @@
 <style lang="scss">
     .social-icon {
         &:hover {
-            color: var(--text);
+            color: var(--inverse-bg);
         }
     }
 </style>
