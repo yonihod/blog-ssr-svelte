@@ -29,30 +29,25 @@
 {#if postPromise != null && tagsPromise != null}
     <article>
         <h1>{@html postPromise.title.rendered}</h1>
-        <p>{displayDate(postPromise.date)}</p>
+        <p class="font-extrabold text-xl my-4 mx-0">{displayDate(postPromise.date)}</p>
         <Tags tags={tagsPromise} animation={false}/>
-        <h4>{@html postPromise.excerpt.rendered}</h4>
-        <span use:codify>
+
+        <div class="mt-6" use:codify>
             {@html postPromise.content.rendered}
-        </span>
+        </div>
     </article>
     {:else}
     <div>Loading...</div>
 {/if}
 
 
-<style lang="postcss" global>
+<style lang="scss" global>
     h1 {
-        font-size: 1.75rem;
+        font-size: 2rem;
         font-weight: 900;
         margin: 2rem 0;
     }
-    p {
-        margin: 1.75rem 0;
-        line-height: 1.8;
-        padding: 0;
-    }
-
+    
     code {
         color: #fff;
         background: #272822;
@@ -79,5 +74,29 @@
         box-decoration-break: clone;
         padding: .1rem .3rem .2rem;
         border-radius: .2rem;
+    }
+    h2 {
+        margin: 2rem 0;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        font-size: 1.5rem;
+        img {
+            display: inline;
+            margin-left: 1rem;
+            height: auto;
+            max-width: 100%;
+            vertical-align: middle;
+        }
+    }
+
+    ol {
+        display: block;
+        list-style-type: decimal;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
     }
 </style>

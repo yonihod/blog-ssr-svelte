@@ -34,7 +34,7 @@
         <img class="post-img" src="{post.jetpack_featured_media_url}" alt="Post">
         <div class="box px-4 py-2 mt-2 text text-xl font-bold relative">{@html post.title.rendered}</div>
     </div>
-    <div class="meta px-4 justify-between">
+    <div class="meta px-4 py-2 justify-between">
         <span>{displayDate}</span>
         {#if tags != null }    
             <Tags tags={tags} animation={animation}/>
@@ -55,7 +55,7 @@
 
         .upper {
             display: grid;
-            grid-template-rows: 75% 1fr;
+            grid-template-rows: 65% 1fr;
         }
         &:hover {
             .meta {
@@ -64,7 +64,15 @@
                 visibility: visible;
             }
         }
+        .pb-1 {
+            overflow: hidden;
+        }
 
+        .box {
+            background: #fff;
+            height: 100%;
+
+        }
         .box::before {
             content: "";
             width: 45px;
@@ -75,7 +83,8 @@
         }
 
         .meta {
-            display: flex;
+            display: grid;
+            grid-template-columns: 50% 1fr;
             background: #fff;
             z-index: 1;
             -webkit-transition: all 0.3s ease-in-out;
@@ -87,7 +96,7 @@
             width: 100%;
             visibility: hidden;
             opacity: 0;
-            height: 58px;
+            height: 81px;
             transform: translateY(100%);
         }
     }

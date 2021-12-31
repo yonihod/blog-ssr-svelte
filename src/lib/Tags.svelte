@@ -4,7 +4,7 @@
 
 </script>
 
-<div class="flex flex-wrap gap-2">
+<div class="tag-container flex flex-wrap gap-x-2">
     {#each tags as tag, i}
         <span class:animate="{animation==true}" class="tag rounded-md px-2 py-1 font-bold text-xs" style="animation-delay: {(i) * 200}ms;">
             {tag.name}
