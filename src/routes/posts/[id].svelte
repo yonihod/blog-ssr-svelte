@@ -27,7 +27,7 @@
 </script>
 
 {#if postPromise != null && tagsPromise != null}
-    <article>
+    <article class="my-6">
         <h1>{@html postPromise.title.rendered}</h1>
         <p class="font-extrabold text-xl my-4 mx-0">{displayDate(postPromise.date)}</p>
         <Tags tags={tagsPromise} animation={false}/>
