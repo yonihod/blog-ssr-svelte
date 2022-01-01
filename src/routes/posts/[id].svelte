@@ -5,6 +5,7 @@
     import { getPostById, getPostTag } from "../../services/wordpress";
     import Tags from "$lib/Tags.svelte";
     import codify from "$lib/actions/codify"
+import SocialLinks from '$lib/SocialLinks.svelte';
 
     let postPromise: any;
     let tagsPromise: any;
@@ -26,6 +27,16 @@
 
 </script>
 
+<svelte:head>
+    {#if postPromise}
+        <meta property="og:title" content="{postPromise.title.rendered}" />
+        <meta property="og:description" content={postPromise.excerpt.rendered} />
+        <meta property="og:image" itemprop="image" content="{postPromise.jetpack_featured_media_url}">
+        <meta property="og:updated_time" content="{postPromise.date}" />
+        <title>{postPromise.title.rendered}</title>
+    {/if}
+</svelte:head>
+
 {#if postPromise != null && tagsPromise != null}
     <article class="my-6">
         <h1>{@html postPromise.title.rendered}</h1>
@@ -36,6 +47,9 @@
             {@html postPromise.content.rendered}
         </div>
     </article>
+    <div class="flex">
+        <SocialLinks url={`${$page.host}${$page.path} `} title={postPromise.title.rendered} desc={postPromise.excerpt.rendered} hashtags={tagsPromise}/>
+    </div>
     {:else}
     <div>Loading...</div>
 {/if}
