@@ -6,6 +6,7 @@
     import Tags from "$lib/Tags.svelte";
     import codify from "$lib/actions/codify"
 import SocialLinks from '$lib/SocialLinks.svelte';
+import ReadingTime from '$lib/ReadingTime.svelte';
 
     let postPromise: any;
     let tagsPromise: any;
@@ -39,11 +40,14 @@ import SocialLinks from '$lib/SocialLinks.svelte';
 
 {#if postPromise != null && tagsPromise != null}
     <article class="my-6">
-        <h1>{@html postPromise.title.rendered}</h1>
-        <p class="font-extrabold text-xl my-4 mx-0">{displayDate(postPromise.date)}</p>
+        <h1 class="mb-0 font-extrabold">{@html postPromise.title.rendered}</h1>
+        <span class="flex gap-1 items-start">
+            <p class="text-sm my-2 mx-0">{displayDate(postPromise.date)},</p>
+            <ReadingTime post={postPromise} />
+        </span>
         <Tags tags={tagsPromise} animation={false}/>
 
-        <div class="mt-6" use:codify>
+        <div class="mt-16" use:codify>
             {@html postPromise.content.rendered}
         </div>
     </article>

@@ -3,6 +3,7 @@
     import { getPostTag } from "../services/wordpress";
     import { onMount } from "svelte";
     import * as timeago from "timeago-simple";
+import ReadingTime from "./ReadingTime.svelte";
 
     export let post: Post;
     export let delay: number;
@@ -11,7 +12,6 @@
     let animation: boolean;
     let displayDate : string;
 
-    console.log('PostCard',post);
     onMount( async ()=> {
         tags = await getPostTag(post.id);
     })
@@ -34,10 +34,13 @@
         <img class="post-img" src="{post.jetpack_featured_media_url}" alt="Post">
         <div class="box px-4 py-2 mt-2 text text-xl font-bold relative">{@html post.title.rendered}</div>
     </div>
-    <div class="meta px-4 py-2 justify-between">
-        <span>{displayDate}</span>
+    <div class="meta px-4 py-2">
+        <span class="flex items-start">
+            <span class="text-sm my-2 mr-1">{displayDate},</span>
+            <ReadingTime {post} />
+        </span>
         {#if tags != null }    
-            <Tags tags={tags} animation={animation}/>
+            <Tags tags={tags} animation={animation} className={'justify-end'}/>
         {/if}
     </div>
 </a>
@@ -53,10 +56,6 @@
         color: #000;
         text-decoration: none;
 
-        .upper {
-            display: grid;
-            grid-template-rows: 65% 1fr;
-        }
         &:hover {
             .meta {
                 opacity: 1;
@@ -96,7 +95,7 @@
             width: 100%;
             visibility: hidden;
             opacity: 0;
-            height: 81px;
+            height: 80px;
             transform: translateY(100%);
         }
     }
