@@ -2,7 +2,6 @@
 	import { WhatsApp, Facebook, Twitter} from 'svelte-share-buttons-component';
 	export let url;
 	export let title;
-	export let desc;
     export let hashtags: any;
 
     let hashtagStr = "";

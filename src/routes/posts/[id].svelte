@@ -48,7 +48,7 @@ import SocialLinks from '$lib/SocialLinks.svelte';
         </div>
     </article>
     <div class="flex">
-        <SocialLinks url={`${$page.host}${$page.path} `} title={postPromise.title.rendered} desc={postPromise.excerpt.rendered} hashtags={tagsPromise}/>
+        <SocialLinks url={`https://${$page.host}${$page.path} `} title={postPromise.title.rendered} hashtags={tagsPromise}/>
     </div>
     {:else}
     <div>Loading...</div>
