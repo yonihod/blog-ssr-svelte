@@ -1,15 +1,32 @@
+
+<script context="module">
+    import { getPostById, getPostTag } from "../../services/wordpress";
+	export async function load({ page, params, fetch }) {
+        console.log('id', page.params.id);
+
+        const post = await getPostById(parseInt((page.params.id)));
+        const tags = await getPostTag(parseInt((page.params.id)))
+
+		return {
+            props: {
+                post,
+                tags
+            }
+        }
+	}
+</script>
+
 <script lang="ts">
     import '../../prism.css';
-    import { onMount } from "svelte";
     import { page } from '$app/stores';
-    import { getPostById, getPostTag } from "../../services/wordpress";
     import Tags from "$lib/Tags.svelte";
     import codify from "$lib/actions/codify"
-import SocialLinks from '$lib/SocialLinks.svelte';
-import ReadingTime from '$lib/ReadingTime.svelte';
+    import SocialLinks from '$lib/SocialLinks.svelte';
+    import ReadingTime from '$lib/ReadingTime.svelte';
 
-    let postPromise: any;
-    let tagsPromise: any;
+    export let post: Post;
+    export let tags: Tag[];
+
     const displayDate =  (date) : string => {
         const _date = new Date(date);
         const month = _date.toLocaleString('default', { month: 'long' });
@@ -18,41 +35,31 @@ import ReadingTime from '$lib/ReadingTime.svelte';
         return `${month} ${day}, ${year}`
     }
 
-    onMount( async()=> {
-        console.log("Mounting...")
-        postPromise = (await getPostById(parseInt(($page.params.id))));
-        tagsPromise = (await getPostTag(parseInt(($page.params.id))));
-        console.log(postPromise);
-        console.log('tags',tagsPromise);
-    })
-
 </script>
 
 <svelte:head>
-    {#if postPromise}
-        <meta property="og:title" content="{postPromise.title.rendered}" />
-        <meta property="og:description" content={postPromise.excerpt.rendered} />
-        <meta property="og:image" itemprop="image" content="{postPromise.jetpack_featured_media_url}">
-        <meta property="og:updated_time" content="{postPromise.date}" />
-        <title>{postPromise.title.rendered}</title>
-    {/if}
+    <meta property="og:title" content="{post.title.rendered}" />
+    <meta property="og:description" content={post.excerpt.rendered} />
+    <meta property="og:image" itemprop="image" content="{post.jetpack_featured_media_url}">
+    <meta property="og:updated_time" content="{post.date}" />
+    <title>{post.title.rendered}</title>
 </svelte:head>
 
-{#if postPromise != null && tagsPromise != null}
+{#if post != null && tags != null}
     <article class="my-6">
-        <h1 class="mb-0 font-extrabold">{@html postPromise.title.rendered}</h1>
+        <h1 class="mb-0 font-extrabold">{@html post.title.rendered}</h1>
         <span class="flex gap-1 items-start">
-            <p class="text-sm my-2 mx-0">{displayDate(postPromise.date)},</p>
-            <ReadingTime post={postPromise} />
+            <p class="text-sm my-2 mx-0">{displayDate(post.date)},</p>
+            <ReadingTime post={post} />
         </span>
-        <Tags tags={tagsPromise} animation={false}/>
+        <Tags tags={tags} animation={false}/>
 
         <div class="mt-16" use:codify>
-            {@html postPromise.content.rendered}
+            {@html post.content.rendered}
         </div>
     </article>
     <div class="flex">
-        <SocialLinks url={`https://${$page.host}${$page.path} `} title={postPromise.title.rendered} hashtags={tagsPromise}/>
+        <SocialLinks url={`https://${$page.host}${$page.path} `} title={post.title.rendered} hashtags={tags}/>
     </div>
     {:else}
     <div>Loading...</div>
