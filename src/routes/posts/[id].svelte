@@ -1,11 +1,11 @@
 
 <script context="module">
     import { getPostById, getPostTag } from "../../services/wordpress";
-	export async function load({ page, params, fetch }) {
-        console.log('id', page.params.id);
+	export async function load({ params }) {
+        console.log('id', params.id);
 
-        const post = await getPostById(parseInt((page.params.id)));
-        const tags = await getPostTag(parseInt((page.params.id)))
+        const post = await getPostById(parseInt((params.id)));
+        const tags = await getPostTag(parseInt((params.id)))
 
 		return {
             props: {
@@ -59,7 +59,7 @@
         </div>
     </article>
     <div class="flex">
-        <SocialLinks url={`https://${$page.host}${$page.path} `} title={post.title.rendered} hashtags={tags}/>
+        <SocialLinks url={`https://${$page.host}${$page.url.pathname} `} title={post.title.rendered} hashtags={tags}/>
     </div>
     {:else}
     <div>Loading...</div>
