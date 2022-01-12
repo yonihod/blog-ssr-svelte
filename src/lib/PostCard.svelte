@@ -35,7 +35,7 @@ import ReadingTime from "./ReadingTime.svelte";
         <div class="box px-4 py-2 mt-2 text text-xl font-bold relative">{@html post.title.rendered}</div>
     </div>
     <div class="meta px-4 py-2">
-        <span class="flex items-start">
+        <span class="flex items-start whitespace-nowrap">
             <span class="text-sm my-2 mr-1">{displayDate},</span>
             <ReadingTime {post} />
         </span>
@@ -65,6 +65,11 @@ import ReadingTime from "./ReadingTime.svelte";
         }
         .pb-1 {
             overflow: hidden;
+        }
+
+        .post-img {
+            height: 210px;
+            object-fit: cover;
         }
 
         .box {

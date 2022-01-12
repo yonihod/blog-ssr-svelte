@@ -3,7 +3,10 @@ export async function get() {
 
     const posts = await getPosts();
     const urls = posts.map((post) => {
-       return `<url><loc><![CDATA[https://blog.yonihodeffi.dev/posts/${post.id}]]></loc><lastmod><![CDATA[${post.modified}]]></lastmod><changefreq><![CDATA[weekly]]></changefreq><priority><![CDATA[0.7]]></priority><image:image><image:loc><![CDATA[${post.jetpack_featured_media_url}]]></image:loc></image:image></url>`
+      const dateString = post.modified;
+      const date = new Date(dateString);
+
+       return `<url><loc><![CDATA[https://blog.yonihodeffi.dev/posts/${post.id}]]></loc><lastmod><![CDATA[${date.toISOString()}]]></lastmod><changefreq><![CDATA[weekly]]></changefreq><priority><![CDATA[0.7]]></priority><image:image><image:loc><![CDATA[${post.jetpack_featured_media_url}]]></image:loc></image:image></url>`
     })
     const body = `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
