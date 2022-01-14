@@ -102,10 +102,15 @@
     }
     h2 {
         margin: 2rem 0;
+        font-size: 2rem;
     }
 
-    h1,h2,h3,h4,h5,h6 {
+    h4 {
+        margin-top:1rem;
+        margin-bottom: .5rem;
         font-size: 1.5rem;
+    }
+    h1,h2,h3,h4,h5,h6 {
         img {
             display: inline;
             margin-left: 1rem;

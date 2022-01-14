@@ -30,9 +30,9 @@ import ReadingTime from "./ReadingTime.svelte";
     class="card relative shadow-sm bg-white rounded-3xl w-full h-72"
     style="animation-delay: {delay}ms"
     >
-    <div class="upper pb-1">
-        <img class="post-img" src="{post.jetpack_featured_media_url}" alt="Post">
-        <div class="box px-4 py-2 mt-2 text text-xl font-bold relative">{@html post.title.rendered}</div>
+    <div class="upper">
+        <img class="post-img" src="{post.jetpack_featured_media_url}" alt="Post"/>
+        <div class="box px-4 py-4 text text-xl font-bold absolute top-2">{@html post.title.rendered}
     </div>
     <div class="meta px-4 py-2">
         <span class="flex items-start whitespace-nowrap">
@@ -40,7 +40,7 @@ import ReadingTime from "./ReadingTime.svelte";
             <ReadingTime {post} />
         </span>
         {#if tags != null }    
-            <Tags tags={tags} animation={animation} className={'justify-end'}/>
+            <Tags tags={tags} animation={animation}/>
         {/if}
     </div>
 </a>
@@ -56,6 +56,16 @@ import ReadingTime from "./ReadingTime.svelte";
         color: #000;
         text-decoration: none;
 
+        &:after {
+            content: "";
+            width: 100%;
+            position: absolute;
+            top: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, #efefef, transparent 80%);
+            z-index: 1;
+        }
+
         &:hover {
             .meta {
                 opacity: 1;
@@ -68,14 +78,19 @@ import ReadingTime from "./ReadingTime.svelte";
         }
 
         .post-img {
-            height: 210px;
+            height: 100%;
+            width: 100%;
             object-fit: cover;
         }
 
         .box {
-            background: #fff;
-            height: 100%;
+            width: 100%;
+            z-index: 2;
+        }
 
+        .upper {
+            height: 100%;
+            width: 100%;
         }
         .box::before {
             content: "";
@@ -87,9 +102,10 @@ import ReadingTime from "./ReadingTime.svelte";
         }
 
         .meta {
-            display: grid;
-            grid-template-columns: 50% 1fr;
-            background: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            background: #f5f5f4d9;
             z-index: 1;
             -webkit-transition: all 0.3s ease-in-out;
             -o-transition: all 0.3s ease-in-out;
@@ -100,8 +116,8 @@ import ReadingTime from "./ReadingTime.svelte";
             width: 100%;
             visibility: hidden;
             opacity: 0;
-            height: 80px;
-            transform: translateY(100%);
+            height: 120px;
+            transform: translateY(400px);
         }
     }
 </style>
