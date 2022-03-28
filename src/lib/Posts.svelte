@@ -6,7 +6,6 @@
     onMount( async ()=> {
         try {
 			posts = await getPosts();
-            console.log(posts);
 		}catch(e) {
 			console.error(e);
 		}

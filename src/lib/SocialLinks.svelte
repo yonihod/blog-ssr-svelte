@@ -5,7 +5,6 @@
     export let hashtags: any;
 
     let hashtagStr = "";
-    console.log(hashtags);
     if(hashtags){
         for (const tag of hashtags) {
             if(tag.name) hashtagStr += `${tag.name},` ;

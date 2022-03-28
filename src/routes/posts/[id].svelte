@@ -2,8 +2,6 @@
 <script context="module">
     import { getPostById, getPostTag } from "../../services/wordpress";
 	export async function load({ params }) {
-        console.log('id', params.id);
-
         const post = await getPostById(parseInt((params.id)));
         const tags = await getPostTag(parseInt((params.id)))
 
