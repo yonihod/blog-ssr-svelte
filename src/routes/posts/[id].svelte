@@ -72,6 +72,11 @@
         font-weight: 900;
         margin: 2rem 0;
     }
+
+    article {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     
     code {
         color: #fff;
@@ -84,8 +89,8 @@
         margin-bottom: 1.6em;
         max-width: 100%;
         overflow: auto;
-        padding: 1.25em 2em;
         display: block;
+        padding: 1.25rem .5rem;
         word-wrap: break-word;
     }
 
