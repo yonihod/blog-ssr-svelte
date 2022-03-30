@@ -65,6 +65,13 @@
 
 
 <style lang="scss" global>
+
+    @media (max-width:640px) {
+        article {
+            overflow-x: hidden;
+        }
+    }
+    
     h1 {
         font-size: 2rem;
         font-weight: 900;
@@ -73,7 +80,10 @@
 
     article {
         max-width: 100%;
-        overflow-x: hidden;
+    }
+
+    .wp-block-code {
+        white-space: pre-wrap;
     }
     
     code {
