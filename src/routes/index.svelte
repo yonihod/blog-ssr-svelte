@@ -1,12 +1,23 @@
 <script context="module" lang="ts">
 	import { ArrowBackUp  } from "tabler-icons-svelte";
-
+    import { getPosts } from "../services/wordpress";
+	
 	export const prerender = true;
+    
+	export async function load() {
+    const posts = await getPosts();
+	return {
+			props: {
+				posts
+			}
+		}
+	}
 </script>
 
 <script lang="ts">
 	import Posts from '$lib/Posts.svelte';
 	import Author from '$lib/Author.svelte';
+	export let posts: Array<Post>;
 </script>
 
 <svelte:head>
@@ -37,7 +48,7 @@
 			</figcaption>
 		</figure>
 	</div>
-	<Posts/>
+	<Posts {posts} />
 </section>
 
 <style>
