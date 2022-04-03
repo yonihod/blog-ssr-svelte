@@ -12,7 +12,7 @@
     }
 </script>
 
-<div class="flex flex-col py-6 px-0 justify-center">
+<div class="flex flex-col md:py-6 lg:py-6 sm:py-1 px-0 justify-center">
     <div>
         <WhatsApp class="share-button" text="{title} {url}" />
         <Facebook class="share-button" quote="{title}" {url} />

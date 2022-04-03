@@ -44,7 +44,7 @@
 </svelte:head>
 
 {#if post != null && tags != null}
-    <article class="my-6">
+    <article class="md:my-6 lg:my-6">
         <h1 class="mb-0 font-extrabold">{@html post.title.rendered}</h1>
         <span class="flex gap-1 items-start">
             <p class="text-sm my-2 mx-0">{displayDate(post.date)},</p>
