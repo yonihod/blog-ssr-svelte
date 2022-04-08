@@ -7,7 +7,6 @@
     
 	export async function load() {
     const posts = await getPosts();
-	console.log(posts);
 	return {
 			props: {
 				posts
