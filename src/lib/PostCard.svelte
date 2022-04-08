@@ -8,14 +8,8 @@
     export let post: Post;
     export let delay: number;
 
-    let tags: any;
     let animation: boolean;
     let displayDate : string;
-
-    onMount( async ()=> {
-        tags = await getPostTag(post.id);
-    })
-
 
     if(post?.date)
         displayDate = timeago.simple(post.date);
@@ -31,16 +25,16 @@
     style="animation-delay: {delay}ms"
     >
     <div class="upper">
-        <img class="post-img" src="{post.jetpack_featured_media_url}" alt="Post"/>
-        <div class="box px-4 py-4 text text-xl font-bold absolute top-2">{@html post.title.rendered}
+        <img class="post-img" src="{post.featuredImage}" alt="Post"/>
+        <div class="box px-4 py-4 text text-xl font-bold absolute top-2">{@html post.title}
     </div>
     <div class="meta px-4 py-2">
         <span class="flex items-start whitespace-nowrap">
             <span class="text-sm my-2 mr-1">{displayDate},</span>
-            <ReadingTime {post} />
+            <!-- <ReadingTime {post} /> -->
         </span>
-        {#if tags != null }    
-            <Tags tags={tags} animation={animation}/>
+        {#if post.tags != null }    
+            <Tags tags={post.tags} animation={animation}/>
         {/if}
     </div>
 </a>

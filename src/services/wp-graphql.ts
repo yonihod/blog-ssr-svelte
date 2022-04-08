@@ -8,7 +8,7 @@ export const getPostById = async (id: string) : Promise<any> => {
     
     const query = 
     `query getPostById {
-        postBy(id: "cG9zdDo3NA==") {
+        postBy(id: "${id}") {
           content(format: RENDERED)
           date
           title(format: RENDERED)
@@ -42,4 +42,48 @@ export const getPostById = async (id: string) : Promise<any> => {
           console.log(e)
       }
 
+}
+
+
+export const getPosts = async () : Promise<any> => {
+  const query=
+  `query getPosts {
+    posts {
+      edges {
+        node {
+          content(format: RENDERED)
+          date
+          featuredImage {
+            node {
+              link
+              sourceUrl
+            }
+          }
+          title(format: RENDERED)
+          id
+          tags {
+            nodes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }`
+
+  try {
+    const res = await wpAPI.post('',{query});
+
+    return res.data.posts.edges.map((post)=> {
+        return {
+          ...post.node,
+          featuredImage: post.node.featuredImage.node.sourceUrl,
+          tags: post.node.tags.nodes
+        }
+    })
+
+  }catch(e){
+      console.log(e)
+  }
+  
 }

@@ -1,6 +1,5 @@
 
 <script context="module">
-    import { getPostById, getPostTag } from "../../services/wp-rest";
     import { getPostById as getPostGraphql } from "../../services/wp-graphql";
 	export async function load({ params }) {
         const post = await getPostGraphql(params.id);
@@ -47,7 +46,7 @@
         <h1 class="mb-0 font-extrabold">{@html post.title}</h1>
         <span class="flex gap-1 items-start">
             <p class="text-sm my-2 mx-0">{displayDate(post.date)},</p>
-            <!-- <ReadingTime post={post} /> -->
+            <ReadingTime post={post} />
         </span>
         <Tags tags={tags} animation={false}/>
 

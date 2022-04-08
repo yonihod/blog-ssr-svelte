@@ -1,9 +1,9 @@
 <script lang=ts>
     import { Clock } from "tabler-icons-svelte";
-    export let post : Post;
+    export let post;
 
-    const calculatePostTIme = (post : Post) : number => {
-        const wordsCount = post.content.rendered.split(" ").length;
+    const calculatePostTIme = (post) : number => {
+        const wordsCount = post.content.split(" ").length;
         return Math.ceil(wordsCount / 200);
     }
 </script>
