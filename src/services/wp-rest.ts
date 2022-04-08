@@ -1,4 +1,4 @@
-import { wpAPI } from "./axiosService";
+import { wpRestAPI as wpAPI } from "./axiosService";
 
 export const getPosts = () : Promise<Array<Post>> => wpAPI.get("/posts");
 

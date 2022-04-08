@@ -1,14 +1,13 @@
 
 <script context="module">
-    import { getPostById, getPostTag } from "../../services/wordpress";
+    import { getPostById, getPostTag } from "../../services/wp-rest";
+    import { getPostById as getPostGraphql } from "../../services/wp-graphql";
 	export async function load({ params }) {
-        const post = await getPostById(parseInt((params.id)));
-        const tags = await getPostTag(parseInt((params.id)))
-
+        const post = await getPostGraphql(params.id);
 		return {
             props: {
                 post,
-                tags
+                tags: post.tags
             }
         }
 	}
@@ -22,13 +21,13 @@
     import SocialLinks from '$lib/SocialLinks.svelte';
     import ReadingTime from '$lib/ReadingTime.svelte';
 
-    export let post: Post;
+    export let post: any;
     export let tags: Tag[];
 
     const displayDate =  (date) : string => {
         const _date = new Date(date);
         const month = _date.toLocaleString('default', { month: 'long' });
-        const day = _date.getUTCDate();
+    const day = _date.getUTCDate();
         const year =_date.getFullYear();
         return `${month} ${day}, ${year}`
     }
@@ -36,28 +35,28 @@
 </script>
 
 <svelte:head>
-    <meta property="og:title" content="{post.title.rendered}" />
-    <meta property="og:description" content={post.excerpt.rendered} />
-    <meta property="og:image" itemprop="image" content="{post.jetpack_featured_media_url}">
+    <meta property="og:title" content="{post.title}" />
+    <meta property="og:description" content={post.excerpt} />
+    <meta property="og:image" itemprop="image" content="{post.featuredImage}">
     <meta property="og:updated_time" content="{post.date}" />
-    <title>{post.title.rendered}</title>
+    <title>{post.title}</title>
 </svelte:head>
 
-{#if post != null && tags != null}
+{#if post != null}
     <article class="md:my-6 lg:my-6">
-        <h1 class="mb-0 font-extrabold">{@html post.title.rendered}</h1>
+        <h1 class="mb-0 font-extrabold">{@html post.title}</h1>
         <span class="flex gap-1 items-start">
             <p class="text-sm my-2 mx-0">{displayDate(post.date)},</p>
-            <ReadingTime post={post} />
+            <!-- <ReadingTime post={post} /> -->
         </span>
         <Tags tags={tags} animation={false}/>
 
         <div class="mt-16" use:codify>
-            {@html post.content.rendered}
+            {@html post.content}
         </div>
     </article>
     <div class="flex">
-        <SocialLinks url={`https://${$page.host}${$page.url.pathname} `} title={post.title.rendered} hashtags={tags}/>
+        <SocialLinks url={`https://${$page.host}${$page.url.pathname} `} title={post.title} hashtags={null}/>
     </div>
     {:else}
     <div>Loading...</div>

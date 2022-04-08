@@ -1,4 +1,4 @@
-import { getPosts } from './../services/wordpress';
+import { getPosts } from '../services/wp-rest';
 export async function get() {
 
     const posts = await getPosts();

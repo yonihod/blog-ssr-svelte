@@ -1,6 +1,6 @@
 <script lang="ts">
     import Tags from "./Tags.svelte";
-    import { getPostTag } from "../services/wordpress";
+    import { getPostTag } from "../services/wp-rest";
     import { onMount } from "svelte";
     import * as timeago from "timeago-simple";
     import ReadingTime from "./ReadingTime.svelte";

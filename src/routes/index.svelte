@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import { ArrowBackUp  } from "tabler-icons-svelte";
-    import { getPosts } from "../services/wordpress";
+    import { getPosts } from "../services/wp-rest";
 	
 	export const prerender = true;
     
