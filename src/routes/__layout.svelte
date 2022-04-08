@@ -23,4 +23,10 @@
 		grid-template-rows: auto 1fr auto;
 		height: 100vh;
 	}
+
+	@media screen and (max-width:768px){
+		#root {
+			height: auto;
+		}
+	}
 </style>
