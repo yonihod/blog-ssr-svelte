@@ -3,12 +3,18 @@
     import { getPostById as getPostGraphql } from "../../services/wp-graphql";
 	export async function load({ params }) {
         const post = await getPostGraphql(params.id);
-		return {
-            props: {
-                post,
-                tags: post.tags
+        if(post && post?.tags)
+            return {
+                props: {
+                    post,
+                    tags: post.tags || []
+                }
             }
-        }
+        else
+            return {
+                status: 302,
+                redirect: "/error"
+            };
 	}
 </script>
 
@@ -22,6 +28,8 @@
 
     export let post: any;
     export let tags: Tag[];
+
+    console.log(post)
 
     const displayDate =  (date) : string => {
         const _date = new Date(date);

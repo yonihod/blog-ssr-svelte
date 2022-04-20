@@ -30,6 +30,7 @@ export const getPostById = async (id: string) : Promise<any> => {
       }`
       try {
         return wpAPI.post('',{query}).then( (res) => {
+          if(res?.data?.data?.postBy) {
             return {
                 ...res.data.postBy,
                 tags: res.data.postBy.tags.edges.map((tag)=> {
@@ -37,6 +38,8 @@ export const getPostById = async (id: string) : Promise<any> => {
                 }),
                 featuredImage: res.data.postBy.featuredImage.node.link
             }
+          }
+          return null;
         });
       }catch(e){
           console.log(e)
