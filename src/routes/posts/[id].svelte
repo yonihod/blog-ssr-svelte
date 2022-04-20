@@ -3,7 +3,7 @@
     import { getPostById as getPostGraphql } from "../../services/wp-graphql";
 	export async function load({ params }) {
         const post = await getPostGraphql(params.id);
-        if(post && post?.tags)
+        if(post)
             return {
                 props: {
                     post,

@@ -30,7 +30,9 @@ export const getPostById = async (id: string) : Promise<any> => {
       }`
       try {
         return wpAPI.post('',{query}).then( (res) => {
-          if(res?.data?.data?.postBy) {
+          console.log(res);
+          
+          if(res?.data?.postBy) {
             return {
                 ...res.data.postBy,
                 tags: res.data.postBy.tags.edges.map((tag)=> {
