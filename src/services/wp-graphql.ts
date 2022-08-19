@@ -78,12 +78,11 @@ export const getPosts = async () : Promise<any> => {
 
   try {
     const res = await wpAPI.post('',{query});
-
-    return res.data.posts.edges.map((post)=> {
+        return res.data.posts.edges.map((post)=> {
         return {
-          ...post.node,
-          featuredImage: post.node.featuredImage.node.sourceUrl,
-          tags: post.node.tags.nodes
+          ...post?.node,
+          featuredImage: post?.node?.featuredImage?.node?.sourceUrl,
+          tags: post?.node?.tags?.nodes
         }
     })
 
