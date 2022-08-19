@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Switch from './Switch.svelte';
+    import Logo from './Logo.svelte';
 
 	let darkTheme;
 
@@ -28,7 +29,8 @@
 <header>	
 	<div class="flex items-center">
 		<a sveltekit:prefetch href="/">
-			<img src="/blog-logo.png" alt="logo" class="logo">
+			<!-- <img src="/blog-logo.svg" alt="logo" class="logo"> -->
+            <Logo/>
 		</a>
 		<div class="ml-auto">
 			<Switch toggleTheme={toggleTheme}></Switch>
